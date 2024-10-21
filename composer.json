@@ -79,9 +79,8 @@
   },
   "extra": {
     "laminas": {
-      "config-provider": [
-        "Netglue\\PsrContainer\\Messenger\\ConfigProvider"
-      ]
+      "config-provider": "Netglue\\PsrContainer\\Messenger\\ConfigProvider",
+      "component": "Netglue\\PsrContainer\\Messenger"
     }
   }
 }

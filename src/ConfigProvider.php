@@ -45,48 +45,48 @@ final class ConfigProvider
     {
         return [
             'dependencies' => $this->dependencies(),
-            'symfony' => [
+            'symfony'      => [
                 'messenger' => $this->messengerConfig(),
             ],
-            'laminas-cli' => $this->consoleConfig(),
+            'laminas-cli'  => $this->consoleConfig(),
         ];
     }
 
     /** @return ServiceManagerConfiguration */
-    private function dependencies(): array
+    public function dependencies(): array
     {
         return [
             'factories' => [
-                Container\FailureReceiversProvider::class => Container\FailureReceiversProviderFactory::class,
-                Container\FailureSendersProvider::class => Container\FailureSendersProviderFactory::class,
+                Container\FailureReceiversProvider::class              => Container\FailureReceiversProviderFactory::class,
+                Container\FailureSendersProvider::class                => Container\FailureSendersProviderFactory::class,
                 SymfonyMessenger\Command\ConsumeMessagesCommand::class => Container\Command\ConsumeCommandFactory::class,
-                SymfonyMessenger\Command\DebugCommand::class => Container\Command\DebugCommandFactory::class,
-                RetryStrategyContainer::class => Container\RetryStrategyContainerFactory::class,
-                TransportFactoryFactory::class => InvokableFactory::class,
+                SymfonyMessenger\Command\DebugCommand::class           => Container\Command\DebugCommandFactory::class,
+                RetryStrategyContainer::class                          => Container\RetryStrategyContainerFactory::class,
+                TransportFactoryFactory::class                         => InvokableFactory::class,
             ],
         ];
     }
 
     /** @return MessengerConfig */
-    private function messengerConfig(): array
+    public function messengerConfig(): array
     {
         return [
             // This logger is used by the console commands:
-            'logger' => null,
+            'logger'            => null,
             // The name of the failure transport should be retrievable by name from the container:
             'failure_transport' => null, //'failed',
-            'buses' => [],
-            'transports' => [],
+            'buses'             => [],
+            'transports'        => [],
         ];
     }
 
     /** @return array<string, array<string, class-string>> */
-    private function consoleConfig(): array
+    public function consoleConfig(): array
     {
         return [
             'commands' => [
                 'messenger:consume' => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
-                'debug:messenger' => SymfonyMessenger\Command\DebugCommand::class,
+                'debug:messenger'   => SymfonyMessenger\Command\DebugCommand::class,
             ],
         ];
     }
