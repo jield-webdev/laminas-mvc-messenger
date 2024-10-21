@@ -12,7 +12,6 @@ use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
 use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 use Symfony\Component\Messenger\Transport\TransportFactoryInterface;
 use Symfony\Component\Messenger\Transport\TransportInterface;
-
 use function assert;
 use function is_array;
 use function is_string;
@@ -31,12 +30,12 @@ final class TransportFactory
 
         $serializerName = Dot::stringOrNull('serializer', $options);
         /** @psalm-var mixed $serializer */
-        $serializer = is_string($serializerName)
+        $serializer     = is_string($serializerName) && $container->has($serializerName)
             ? $container->get($serializerName)
             : null;
-        $serializer = $serializer instanceof SerializerInterface ? $serializer : new PhpSerializer();
+        $serializer     = $serializer instanceof SerializerInterface ? $serializer : new PhpSerializer();
         $factoryFactory = $container->get(TransportFactoryFactory::class);
-        $factory = $factoryFactory($options['dsn'], $container);
+        $factory        = $factoryFactory($options['dsn'], $container);
         assert($factory instanceof TransportFactoryInterface);
 
         $transportOptions = Dot::arrayDefault('options', $options, []);
@@ -50,7 +49,7 @@ final class TransportFactory
 
     /**
      * @param non-empty-string $id
-     * @param mixed[]          $arguments
+     * @param mixed[] $arguments
      */
     public static function __callStatic(string $id, array $arguments): TransportInterface
     {
@@ -62,7 +61,7 @@ final class TransportFactory
     /** @return array{dsn: string, ...} */
     private function options(ContainerInterface $container): array
     {
-        $config = Util::applicationConfig($container);
+        $config  = Util::applicationConfig($container);
         $options = Dot::valueOrNull(
             sprintf('symfony|messenger|transports|%s', $this->id),
             $config,
@@ -73,7 +72,7 @@ final class TransportFactory
             $options = ['dsn' => $options];
         }
 
-        if (! is_array($options) || ! isset($options['dsn']) || ! is_string($options['dsn'])) {
+        if (!is_array($options) || !isset($options['dsn']) || !is_string($options['dsn'])) {
             throw new ConfigurationError(sprintf(
                 'There is no DSN configured for the transport with name "%s"',
                 $this->id,
