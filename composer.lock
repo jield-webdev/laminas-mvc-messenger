@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "769cfad1e40a9942101e1e0e92519d87",
+    "content-hash": "7c63082a470a2cbff307e3634521c0bc",
     "packages": [
         {
             "name": "gsteel/dot",
@@ -63,17 +63,17 @@
             "time": "2023-09-18T22:36:33+00:00"
         },
         {
-            "name": "laminas/laminas-log",
+            "name": "jield-webdev/laminas-log",
             "version": "dev-support-for-psr-log-v2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jield-webdev/laminas-log.git",
-                "reference": "b4bcec825e4ca47ec71bc5e80e667864553b1e55"
+                "reference": "42d6ebdfc5fb04fc911eab273c0170f40951a4d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jield-webdev/laminas-log/zipball/b4bcec825e4ca47ec71bc5e80e667864553b1e55",
-                "reference": "b4bcec825e4ca47ec71bc5e80e667864553b1e55",
+                "url": "https://api.github.com/repos/jield-webdev/laminas-log/zipball/42d6ebdfc5fb04fc911eab273c0170f40951a4d1",
+                "reference": "42d6ebdfc5fb04fc911eab273c0170f40951a4d1",
                 "shasum": ""
             },
             "require": {
@@ -111,6 +111,7 @@
                 "laminas/laminas-mail": "Laminas\\Mail component to use the email log writer",
                 "laminas/laminas-validator": "Laminas\\Validator component to block invalid log messages"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laminas": {
@@ -123,32 +124,7 @@
                     "Laminas\\Log\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "LaminasTest\\Log\\": "test/"
-                },
-                "files": [
-                    "test/Writer/TestAsset/chmod.php"
-                ]
-            },
-            "scripts": {
-                "check": [
-                    "@cs-check",
-                    "@test"
-                ],
-                "cs-check": [
-                    "phpcs"
-                ],
-                "cs-fix": [
-                    "phpcbf"
-                ],
-                "test": [
-                    "phpunit --colors=always"
-                ],
-                "test-coverage": [
-                    "phpunit --colors=always --coverage-clover clover.xml"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -160,14 +136,14 @@
                 "logging"
             ],
             "support": {
-                "docs": "https://docs.laminas.dev/laminas-log/",
-                "issues": "https://github.com/laminas/laminas-log/issues",
-                "source": "https://github.com/laminas/laminas-log",
-                "rss": "https://github.com/laminas/laminas-log/releases.atom",
                 "chat": "https://laminas.dev/chat",
-                "forum": "https://discourse.laminas.dev"
+                "docs": "https://docs.laminas.dev/laminas-log/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-log/issues",
+                "rss": "https://github.com/laminas/laminas-log/releases.atom",
+                "source": "https://github.com/laminas/laminas-log"
             },
-            "time": "2024-10-22T11:16:01+00:00"
+            "time": "2024-10-22T11:35:11+00:00"
         },
         {
             "name": "laminas/laminas-servicemanager",
@@ -7524,7 +7500,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "laminas/laminas-log": 20,
+        "jield-webdev/laminas-log": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
@@ -7537,7 +7513,7 @@
         "ext-pcntl": "*"
     },
     "platform-overrides": {
-        "php": "8.1.99"
+        "php": "8.3.99"
     },
     "plugin-api-version": "2.6.0"
 }
