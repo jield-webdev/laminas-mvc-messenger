@@ -6,15 +6,19 @@ namespace Netglue\PsrContainer\Messenger;
 
 class Module
 {
+    /**
+     * @return array<string, array>
+     */
     public function getConfig(): array
     {
         $provider = new ConfigProvider();
+
         return [
             'service_manager' => $provider->dependencies(),
-            'symfony' => [
+            'symfony'         => [
                 'messenger' => $provider->messengerConfig(),
             ],
-            'laminas-cli' => $provider->consoleConfig(),
+            'laminas-cli'     => $provider->consoleConfig(),
         ];
     }
 }
