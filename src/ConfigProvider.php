@@ -6,7 +6,11 @@ namespace Netglue\PsrContainer\Messenger;
 
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Laminas\ServiceManager\ServiceManager;
+use Netglue\PsrContainer\Messenger\Container\Command\FailureCommandAbstractFactory;
 use Symfony\Component\Messenger as SymfonyMessenger;
+use Symfony\Component\Messenger\Command\FailedMessagesRemoveCommand;
+use Symfony\Component\Messenger\Command\FailedMessagesRetryCommand;
+use Symfony\Component\Messenger\Command\FailedMessagesShowCommand;
 use Symfony\Component\Messenger\Handler\HandlersLocatorInterface;
 
 /**
@@ -63,7 +67,8 @@ final class ConfigProvider
                 SymfonyMessenger\Command\DebugCommand::class               => Container\Command\DebugCommandFactory::class,
                 SymfonyMessenger\Command\FailedMessagesRetryCommand::class => Container\Command\FailedMessagesRetryCommandFactory::class,
                 SymfonyMessenger\Command\StatsCommand::class               => Container\Command\StatsCommandFactory::class,
-                SymfonyMessenger\Command\StopWorkersCommand::class         => Container\Command\StopWorkersCommandFactory::class,
+                FailedMessagesRemoveCommand::class                         => [FailureCommandAbstractFactory::class, FailedMessagesRemoveCommand::class],
+                FailedMessagesShowCommand::class                           => [FailureCommandAbstractFactory::class, FailedMessagesShowCommand::class],
                 RetryStrategyContainer::class                              => Container\RetryStrategyContainerFactory::class,
                 TransportFactoryFactory::class                             => InvokableFactory::class,
             ],
@@ -88,14 +93,21 @@ final class ConfigProvider
     {
         return [
             'commands' => [
-                'messenger:consume'               => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
-                'messenger:debug'                 => SymfonyMessenger\Command\DebugCommand::class,
-                //                'messenger:failed-messages-remove' => SymfonyMessenger\Command\FailedMessagesRemoveCommand::class,
-                'messenger:failed-messages-retry' => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
-                //                'messenger:failed-messages-show'   => SymfonyMessenger\Command\FailedMessagesShowCommand::class,
-                'messenger:stats'                 => SymfonyMessenger\Command\StatsCommand::class,
-                //                'messenger:stop-workers'          => SymfonyMessenger\Command\StopWorkersCommand::class,
+                'messenger:consume'                                                    => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
+                'messenger:debug'                                                      => SymfonyMessenger\Command\DebugCommand::class,
+                'messenger:failed-messages-retry'                                      => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
+                'messenger:stats'                                                      => SymfonyMessenger\Command\StatsCommand::class,
+                self::assertCommandName(FailedMessagesRemoveCommand::getDefaultName()) => FailedMessagesRemoveCommand::class,
+                self::assertCommandName(FailedMessagesRetryCommand::getDefaultName())  => FailedMessagesRetryCommand::class,
+                self::assertCommandName(FailedMessagesShowCommand::getDefaultName())   => FailedMessagesShowCommand::class,
             ],
         ];
+    }
+
+    private static function assertCommandName(string|null $name): string
+    {
+        assert(is_string($name) && $name !== '');
+
+        return $name;
     }
 }
