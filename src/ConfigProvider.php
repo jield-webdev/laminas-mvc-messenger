@@ -94,7 +94,7 @@ final class ConfigProvider
                 'messenger:failed-messages-retry' => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
                 //                'messenger:failed-messages-show'   => SymfonyMessenger\Command\FailedMessagesShowCommand::class,
                 'messenger:stats'                 => SymfonyMessenger\Command\StatsCommand::class,
-                'messenger:stop-workers'          => SymfonyMessenger\Command\StopWorkersCommand::class,
+                //                'messenger:stop-workers'          => SymfonyMessenger\Command\StopWorkersCommand::class,
             ],
         ];
     }
