@@ -57,12 +57,15 @@ final class ConfigProvider
     {
         return [
             'factories' => [
-                Container\FailureReceiversProvider::class              => Container\FailureReceiversProviderFactory::class,
-                Container\FailureSendersProvider::class                => Container\FailureSendersProviderFactory::class,
-                SymfonyMessenger\Command\ConsumeMessagesCommand::class => Container\Command\ConsumeCommandFactory::class,
-                SymfonyMessenger\Command\DebugCommand::class           => Container\Command\DebugCommandFactory::class,
-                RetryStrategyContainer::class                          => Container\RetryStrategyContainerFactory::class,
-                TransportFactoryFactory::class                         => InvokableFactory::class,
+                Container\FailureReceiversProvider::class                  => Container\FailureReceiversProviderFactory::class,
+                Container\FailureSendersProvider::class                    => Container\FailureSendersProviderFactory::class,
+                SymfonyMessenger\Command\ConsumeMessagesCommand::class     => Container\Command\ConsumeCommandFactory::class,
+                SymfonyMessenger\Command\DebugCommand::class               => Container\Command\DebugCommandFactory::class,
+                SymfonyMessenger\Command\FailedMessagesRetryCommand::class => Container\Command\FailedMessagesRetryCommandFactory::class,
+                SymfonyMessenger\Command\StatsCommand::class               => Container\Command\StatsCommandFactory::class,
+                SymfonyMessenger\Command\StopWorkersCommand::class         => Container\Command\StopWorkersCommandFactory::class,
+                RetryStrategyContainer::class                              => Container\RetryStrategyContainerFactory::class,
+                TransportFactoryFactory::class                             => InvokableFactory::class,
             ],
         ];
     }
@@ -85,8 +88,13 @@ final class ConfigProvider
     {
         return [
             'commands' => [
-                'messenger:consume' => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
-                'debug:messenger'   => SymfonyMessenger\Command\DebugCommand::class,
+                'messenger:consume'               => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
+                'messenger:debug'                 => SymfonyMessenger\Command\DebugCommand::class,
+                //                'messenger:failed-messages-remove' => SymfonyMessenger\Command\FailedMessagesRemoveCommand::class,
+                'messenger:failed-messages-retry' => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
+                //                'messenger:failed-messages-show'   => SymfonyMessenger\Command\FailedMessagesShowCommand::class,
+                'messenger:stats'                 => SymfonyMessenger\Command\StatsCommand::class,
+                'messenger:stop-workers'          => SymfonyMessenger\Command\StopWorkersCommand::class,
             ],
         ];
     }
