@@ -1,6 +1,7 @@
 {
-  "name": "netglue/laminas-messenger",
+  "name": "jield-webdev/laminas-mvc-messenger",
   "description": "Easy install and configuration for Symfony messenger in a Mezzio/Laminas application",
+  "version": "6.0.0",
   "license": "MIT",
   "authors": [
     {
@@ -12,9 +13,6 @@
     "sort-packages": true,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
-    },
-    "platform": {
-      "php": "8.1.99"
     }
   },
   "minimum-stability": "stable",
@@ -38,7 +36,7 @@
     "doctrine/orm": "^2.20.0",
     "laminas/laminas-cli": "^1.10",
     "laminas/laminas-config-aggregator": "^1.15",
-    "laminas/laminas-servicemanager": "^3.22 || ^4.2.0",
+    "laminas/laminas-servicemanager": "^3.22",
     "lctrs/psalm-psr-container-plugin": "^1.10",
     "phpunit/phpunit": "^10.5.36",
     "psalm/plugin-phpunit": "^0.19.0",

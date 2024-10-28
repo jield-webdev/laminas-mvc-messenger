@@ -63,11 +63,6 @@ final class DoctrineTransportFactory implements TransportFactoryInterface
         return new DoctrineTransport($connection, $serializer);
     }
 
-    /**
-     * @param string $dsn
-     * @param array $options
-     * @return bool
-     */
     public function supports(string $dsn, array $options): bool
     {
         return str_starts_with($dsn, 'doctrine://');
