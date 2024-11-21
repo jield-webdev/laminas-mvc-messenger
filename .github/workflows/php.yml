@@ -17,6 +17,9 @@ jobs:
         php:
           - 8.3
           - 8.4
+        include:
+          - php-version: 8.4
+            composer-options: "--ignore-platform-reqs"
 
     runs-on: ubuntu-latest
 
