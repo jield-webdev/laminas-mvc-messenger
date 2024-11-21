@@ -1,7 +1,6 @@
 {
   "name": "jield-webdev/laminas-mvc-messenger",
   "description": "Easy install and configuration for Symfony messenger in a Laminas application",
-  "version": "3.0",
   "license": "MIT",
   "authors": [
     {
