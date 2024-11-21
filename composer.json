@@ -62,6 +62,7 @@
       "@test",
       "psalm"
     ],
+    "php-lint": "parallel-lint src tests",
     "cs-check": "phpcs",
     "cs-fix": "phpcbf",
     "test": "phpunit --colors=always",
