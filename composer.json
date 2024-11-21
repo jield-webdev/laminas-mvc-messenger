@@ -17,7 +17,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": "~8.1 || ~8.2 || ~8.3 || ~8.4",
+    "php": "~8.3 || ~8.4",
     "gsteel/dot": "^1.7",
     "laminas/laminas-stdlib": "^3.19",
     "psr/log": "^1 || ^2 || ^3",
@@ -33,25 +33,18 @@
     "ext-amqp": "*",
     "ext-pcntl": "*",
     "doctrine/coding-standard": "^12.0",
-    "doctrine/orm": "^2.20.0",
+    "doctrine/orm": "^2.20.0 || ^3.0",
     "laminas/laminas-cli": "^1.10",
     "laminas/laminas-config-aggregator": "^1.15",
     "laminas/laminas-servicemanager": "^3.22",
     "lctrs/psalm-psr-container-plugin": "^1.10",
-    "phpunit/phpunit": "^10.5.36",
-    "psalm/plugin-phpunit": "^0.19.0",
-    "roave/security-advisories": "dev-latest",
-    "squizlabs/php_codesniffer": "^3.10.3",
-    "symfony/amqp-messenger": "^6.4.8 || ^7.0",
-    "symfony/doctrine-messenger": "^6.4.12 || ^7.0",
-    "symfony/redis-messenger": "^6.4.11 || ^7.0",
-    "vimeo/psalm": "^5.26.1"
+    "symfony/redis-messenger": "^6.0 || ^7.0",
+    "symfony/doctrine-messenger": "^6.0 || ^7.0",
+    "symfony/amqp-messenger": "^6.0 || ^7.0",
+    "iteaoffice/testing": "^5.0"
   },
   "suggest": {
-    "laminas/laminas-cli": "To auto-wire symfony cli commands into your DI container with laminas/laminas-cli",
-    "symfony/amqp-messenger": "To use AMQP transports with Messenger",
-    "symfony/redis-messenger": "To use a Redis transport with Messenger",
-    "symfony/doctrine-messenger": "To use a Doctrine transport with Messenger"
+    "laminas/laminas-cli": "To auto-wire symfony cli commands into your DI container with laminas/laminas-cli"
   },
   "autoload": {
     "psr-4": {
@@ -73,12 +66,12 @@
     "cs-fix": "phpcbf",
     "test": "phpunit --colors=always",
     "test-coverage": "phpunit --colors=always --coverage-html build/report",
-    "static-analysis": "psalm --shepherd --stats"
+    "phpstan": "phpstan analyse src --level=3"
   },
   "extra": {
     "branch-alias": {
-      "dev-main": "2.4-dev",
-      "dev-develop": "2.5-dev"
+      "dev-main": "3.0-dev",
+      "dev-develop": "3.1-dev"
     },
     "laminas": {
       "config-provider": "Netglue\\PsrContainer\\Messenger\\ConfigProvider",

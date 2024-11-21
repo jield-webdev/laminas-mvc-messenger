@@ -18,6 +18,7 @@ use Symfony\Component\Messenger\Handler\HandlersLocatorInterface;
  * @psalm-type RetryStrategyConfig = array{
  *     service?: string|null,
  *     max_retries?: numeric|null,
+ *     retry_strategy?: string|null,
  *     delay?: numeric|null,
  *     multiplier?: numeric|null,
  *     max_delay?: numeric|null,

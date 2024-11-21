@@ -147,7 +147,7 @@ class TransportFactoryTest extends TestCase
         $config = [];
         $config['symfony']['messenger']['transports']['foo'] = [
             'dsn' => 'foo://bar',
-            'serializer' => 'MySerializer',
+            'serializer' => 'config',
         ];
         $this->injectConfigFactoryAndSerializer($config, $serializer);
         $result = TransportFactory::__callStatic('foo', [$this->container]);
