@@ -68,8 +68,14 @@ final class ConfigProvider
                 SymfonyMessenger\Command\DebugCommand::class               => Container\Command\DebugCommandFactory::class,
                 SymfonyMessenger\Command\FailedMessagesRetryCommand::class => Container\Command\FailedMessagesRetryCommandFactory::class,
                 SymfonyMessenger\Command\StatsCommand::class               => Container\Command\StatsCommandFactory::class,
-                FailedMessagesRemoveCommand::class                         => [FailureCommandAbstractFactory::class, FailedMessagesRemoveCommand::class],
-                FailedMessagesShowCommand::class                           => [FailureCommandAbstractFactory::class, FailedMessagesShowCommand::class],
+                FailedMessagesRemoveCommand::class                         => [
+                    FailureCommandAbstractFactory::class,
+                    FailedMessagesRemoveCommand::class,
+                ],
+                FailedMessagesShowCommand::class                           => [
+                    FailureCommandAbstractFactory::class,
+                    FailedMessagesShowCommand::class,
+                ],
                 RetryStrategyContainer::class                              => Container\RetryStrategyContainerFactory::class,
                 TransportFactoryFactory::class                             => InvokableFactory::class,
             ],
@@ -94,21 +100,14 @@ final class ConfigProvider
     {
         return [
             'commands' => [
-                'messenger:consume'                                                    => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
-                'messenger:debug'                                                      => SymfonyMessenger\Command\DebugCommand::class,
-                'messenger:failed-messages-retry'                                      => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
-                'messenger:stats'                                                      => SymfonyMessenger\Command\StatsCommand::class,
-                self::assertCommandName(FailedMessagesRemoveCommand::getDefaultName()) => FailedMessagesRemoveCommand::class,
-                self::assertCommandName(FailedMessagesRetryCommand::getDefaultName())  => FailedMessagesRetryCommand::class,
-                self::assertCommandName(FailedMessagesShowCommand::getDefaultName())   => FailedMessagesShowCommand::class,
+                'messenger:consume'               => SymfonyMessenger\Command\ConsumeMessagesCommand::class,
+                'messenger:debug'                 => SymfonyMessenger\Command\DebugCommand::class,
+                'messenger:failed-messages-retry' => SymfonyMessenger\Command\FailedMessagesRetryCommand::class,
+                'messenger:stats'                 => SymfonyMessenger\Command\StatsCommand::class,
+                'messenger:failed:remove'         => FailedMessagesRemoveCommand::class,
+                'messenger:failed:retry'          => FailedMessagesRetryCommand::class,
+                'messenger:failed:show'           => FailedMessagesShowCommand::class,
             ],
         ];
-    }
-
-    private static function assertCommandName(string|null $name): string
-    {
-        assert(is_string($name) && $name !== '');
-
-        return $name;
     }
 }
